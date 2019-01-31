@@ -14,6 +14,7 @@ class GeetestValidator
     public function validate()
     {
         list($geetest_challenge, $geetest_validate, $geetest_seccode) = array_values(request()->only('geetest_challenge', 'geetest_validate', 'geetest_seccode'));
+        Log::info('Geetest Validate Start', ['geetest_challenge' => $geetest_challenge, 'geetest_validate' => $geetest_validate, 'geetest_seccode' => $geetest_seccode, 'user_id' => session()->get('user_id')]);
         if (session()->get('gtserver') == 1) {
             if (Geetest::successValidate($geetest_challenge, $geetest_validate, $geetest_seccode, ['user_id'=>session()->get('user_id')])) {
                 return true;

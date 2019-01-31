@@ -159,6 +159,7 @@ class GeetestLib {
         if (strlen($validate) != 32) {
             return false;
         }
+        Log::info('Geetest checkValidate', ['md5' => md5($this->geetestKey . 'geetest' . $challenge), 'validate' => $validate]);
         if (md5($this->geetestKey . 'geetest' . $challenge) != $validate) {
             return false;
         }
