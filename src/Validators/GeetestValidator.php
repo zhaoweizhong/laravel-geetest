@@ -29,7 +29,7 @@ class GeetestValidator
         list($geetest_challenge, $geetest_validate, $geetest_seccode) = array_values(request()->only('geetest_challenge', 'geetest_validate', 'geetest_seccode'));
         Log::info('Geetest Validate Start', ['geetest_challenge' => $geetest_challenge, 'geetest_validate' => $geetest_validate, 'geetest_seccode' => $geetest_seccode]);
         //if (session()->get('gtserver') == 1) {
-        if (getHttpcode('https://api.geetest.com/register.php') == 405) {
+        if (GeetestValidator::getHttpcode('https://api.geetest.com/register.php') == 405) {
             Log::info('Geetest Validate Start 1');
             if (Geetest::successValidate($geetest_challenge, $geetest_validate, $geetest_seccode, ['user_id'=>'mengtu'])) {
                 Log::info('Geetest Validate Start 2');
