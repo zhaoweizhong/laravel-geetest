@@ -8,7 +8,7 @@ use Zhaoweizhong\Geetest\Facades\Geetest;
 class GeetestValidator
 {
 
-    private function getHttpcode($url){
+    private static function getHttpcode($url){
         $ch = curl_init();
         $timeout = 3;
         curl_setopt($ch,CURLOPT_FOLLOWLOCATION,1);
