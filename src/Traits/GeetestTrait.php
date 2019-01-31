@@ -14,7 +14,7 @@ trait GeetestTrait
      */
     public function captcha()
     {
-        $user_id = 'test';
+        $user_id = 'mengtu';
         $status = Geetest::preProcess(['user_id'=>$user_id]);
         session()->put('gtserver',$status);
         session()->put('user_id',$user_id);
