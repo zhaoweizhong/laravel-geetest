@@ -25,6 +25,7 @@ class GeetestLib {
     public function __construct() {
         $this->geetestId  = config('laravel-geetest.geetest_id');
         $this->geetestKey = config('laravel-geetest.geetest_key');
+        Log::info('Geetest Contruct');
     }
 
     /**
@@ -120,6 +121,7 @@ class GeetestLib {
         $url          = "http://api.geetest.com/validate.php";
         $codevalidate = $this->postRequest($url, $query);
         $obj = json_decode($codevalidate,true);
+        Log::info('Geetest Validate', $obj);
         if ($obj === false){
             return 0;
         }
