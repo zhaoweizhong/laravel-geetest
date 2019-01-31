@@ -2,7 +2,7 @@
 
 namespace Zhaoweizhong\Geetest\Validators;
 
-
+use Illuminate\Support\Facades\Log;
 use Zhaoweizhong\Geetest\Facades\Geetest;
 
 class GeetestValidator
