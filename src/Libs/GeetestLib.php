@@ -2,6 +2,8 @@
 
 namespace Zhaoweizhong\Geetest\Libs;
 
+use Illuminate\Support\Facades\Log;
+
 /**
  * 极验库
  */
