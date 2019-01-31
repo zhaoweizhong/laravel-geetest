@@ -2,8 +2,6 @@
 
 namespace Zhaoweizhong\Geetest\Libs;
 
-use Illuminate\Support\Facades\Log;
-
 /**
  * 极验库
  */
@@ -27,7 +25,6 @@ class GeetestLib {
     public function __construct() {
         $this->geetestId  = config('laravel-geetest.geetest_id');
         $this->geetestKey = config('laravel-geetest.geetest_key');
-        Log::info('Geetest Contruct');
     }
 
     /**
@@ -108,9 +105,7 @@ class GeetestLib {
      * @return int
      */
     public function successValidate($challenge, $validate, $seccode,$param, $json_format=1) {
-        Log::info('Geetest Validate 1');
         if (!$this->checkValidate($challenge, $validate)) {
-            Log::info('Geetest Validate 2');
             return 0;
         }
         $query = array(
@@ -125,7 +120,6 @@ class GeetestLib {
         $url          = "https://api.geetest.com/validate.php";
         $codevalidate = $this->postRequest($url, $query);
         $obj = json_decode($codevalidate,true);
-        Log::info('Geetest Validate', $obj);
         if ($obj === false){
             return 0;
         }
@@ -159,10 +153,8 @@ class GeetestLib {
      */
     private function checkValidate($challenge, $validate) {
         if (strlen($validate) != 32) {
-            Log::info('Geetest Validate 3');
             return false;
         }
-        Log::info('Geetest checkValidate', ['md5' => md5($this->geetestKey . 'geetest' . $challenge), 'validate' => $validate]);
         if (md5($this->geetestKey . 'geetest' . $challenge) != $validate) {
             return false;
         }
