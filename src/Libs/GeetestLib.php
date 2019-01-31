@@ -42,7 +42,7 @@ class GeetestLib {
         );
         $data = array_merge($data,$param);
         $query = http_build_query($data);
-        $url = "http://api.geetest.com/register.php?" . $query;
+        $url = "https://api.geetest.com/register.php?" . $query;
         $challenge = $this->sendRequest($url);
         if (strlen($challenge) != 32) {
             $this->failbackProcess();
@@ -122,7 +122,7 @@ class GeetestLib {
             "sdk"     => self::GT_SDK_VERSION
         );
         $query = array_merge($query,$param);
-        $url          = "http://api.geetest.com/validate.php";
+        $url          = "https://api.geetest.com/validate.php";
         $codevalidate = $this->postRequest($url, $query);
         $obj = json_decode($codevalidate,true);
         Log::info('Geetest Validate', $obj);

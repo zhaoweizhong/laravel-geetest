@@ -8,6 +8,19 @@ use Zhaoweizhong\Geetest\Facades\Geetest;
 class GeetestValidator
 {
 
+    private function getHttpcode($url){
+        $ch = curl_init();
+        $timeout = 3;
+        curl_setopt($ch,CURLOPT_FOLLOWLOCATION,1);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch, CURLOPT_HEADER, 1);
+        curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+        curl_setopt($ch,CURLOPT_URL,$url);
+        curl_exec($ch);
+        return $httpcode = curl_getinfo($ch,CURLINFO_HTTP_CODE);
+        curl_close($ch);
+    }
+
     /**
      * 验证规则
      */
@@ -15,7 +28,8 @@ class GeetestValidator
     {
         list($geetest_challenge, $geetest_validate, $geetest_seccode) = array_values(request()->only('geetest_challenge', 'geetest_validate', 'geetest_seccode'));
         Log::info('Geetest Validate Start', ['geetest_challenge' => $geetest_challenge, 'geetest_validate' => $geetest_validate, 'geetest_seccode' => $geetest_seccode]);
-        if (session()->get('gtserver') == 1) {
+        //if (session()->get('gtserver') == 1) {
+        if (getHttpcode('https://api.geetest.com/register.php') == 405) {
             Log::info('Geetest Validate Start 1');
             if (Geetest::successValidate($geetest_challenge, $geetest_validate, $geetest_seccode, ['user_id'=>'mengtu'])) {
                 Log::info('Geetest Validate Start 2');
