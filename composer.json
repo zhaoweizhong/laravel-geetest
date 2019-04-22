@@ -1,5 +1,5 @@
 {
-    "name": "Zhaoweizhong/laravel-geetest",
+    "name": "zhaoweizhong/laravel-geetest",
     "type": "library",
     "description": "极验验证码 v3.0 Laravel 扩展包",
     "keywords": [
@@ -7,13 +7,12 @@
         "Geetest",
         "Laravel"
     ],
-    "homepage": "https://github.com/Zhaoweizhong/laravel-geetest",
+    "homepage": "https://github.com/zhaoweizhong/laravel-geetest",
     "license": "MIT",
     "authors": [
         {
             "name": "Zhaoweizhong",
             "email": "Zhaoweizhongxee@gmail.com",
-            "homepage": "https://blog.lerzen.com",
             "role": "Developer"
         }
     ],
